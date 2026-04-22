@@ -181,6 +181,15 @@ fieldset:has(input:checked) {
   }
 }
 
+video,
+audio {
+  max-width: 100%;
+  height: auto;
+  max-width: 600px;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
 /*Media queries*/
 /*For small screens*/
 @media (max-width: 600px) {
@@ -190,6 +199,9 @@ fieldset:has(input:checked) {
   }
   #events {
     grid-template-columns: 1fr; /*1 column on small screens*/
+  }
+  section {
+    scroll-margin-top: 350.75px;
   }
 }
 
