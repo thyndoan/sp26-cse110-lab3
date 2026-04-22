@@ -1,0 +1,201 @@
+/*Universal selector + box model*/
+* {
+  margin: 0;
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: hsl(220, 70.21%, 18.43%); /*color using hsl*/
+  --color-space: color(srgb 0.2 0.6 1 / 0.8); /*color using color()*/
+  --color-mix: color-mix(
+    in srgb,
+    var(--color-space),
+    rgb(59, 168, 135)
+  ); /*color using color-mix()*/
+}
+body {
+  background-color: var(
+    --primary-color,
+    blue
+  ); /*css variables and fallbacks. Color using color name*/
+}
+/*Class selector*/
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "width" 100;
+}
+
+header,
+main,
+footer {
+  background-color: #eecd9b; /*background-color and color using hex code*/
+}
+
+/*--Units: relative and absolute--*/
+main {
+  max-width: 900px; /* px-absolute 1*/
+  min-width: 150pt; /* pt-absolute 2*/
+  height: auto;
+  width: 80%; /* %-relative 1*/
+  margin: 0 auto; /* auto margin*/
+}
+
+/*Padding longhand + ID selector*/
+#team-members {
+  padding-top: 1rem; /* rem-relative 2*/
+  padding-bottom: 1rem;
+  padding-left: 0.5cm; /* cm-absolute 3*/
+  padding-right: 0.5cm;
+}
+
+/*Padding shorthand*/
+section {
+  padding: 1rem 1.5rem;
+  scroll-margin-top: 147.4px;
+  border: 2px dashed rgb(240, 60, 180); /*border shorthand*/
+}
+
+/*Margin longhand*/
+header {
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 1em; /*em-relative 3*/
+  margin-left: 0;
+}
+
+/*Margin shorthand*/
+footer {
+  margin: 2rem 0 0 0;
+}
+
+/*Border longhand*/
+#agenda {
+  border-style: solid;
+  border-color: rgba(240, 60, 180, 0.8); /*color using rgba()*/
+  border-width: 2px;
+  border-radius: 8px;
+}
+
+/* Text */
+h1,
+h2,
+h3 {
+  text-align: center; /*Text-align*/
+  color: var(--primary-color, navy); /*Text color*/
+}
+nav a {
+  text-decoration: none; /*Text decoration*/
+  color: var(--primary-color, navy); /*Text color*/
+  display: inline-block; /*display 1: inline-block*/
+}
+
+footer small {
+  display: block; /*display 2: block*/
+}
+
+/* Sizing */
+img {
+  width: 100%; /*width*/
+  height: auto; /*Height*/
+  max-width: 220px; /*max-width*/
+  min-width: 150px; /*min-width*/
+}
+
+/*Position*/
+header {
+  position: sticky; /*position: sticky*/
+  top: 0;
+  z-index: 10;
+}
+
+#interest-form {
+  position: relative; /*position: relative*/
+}
+
+/*Pseudo-classes + pseudo-class selector*/
+nav a:hover {
+  background-color: var(--color-mix, lightgray); /*using color-mix variable*/
+  border-radius: 4px;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+/* Layout: flexbox */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+/* Layout: grid */
+#events {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /*3 equal columns*/
+  gap: 1rem;
+  align-items: start;
+}
+
+/*Attribute selector*/
+input[type="text"] {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(240, 60, 180);
+}
+
+/*Combinators*/
+section p {
+  line-height: 1.6;
+} /*Descendant combinator*/
+main > section {
+  margin-bottom: 2rem;
+} /*Child combinator*/
+h2 ~ p {
+  color: var(--primary-color, navy);
+} /*General sibling combinator*/
+h2 + p {
+  font-weight: bold;
+} /*Adjacent sibling combinator*/
+body.roboto {
+  letter-spacing: 0.01em;
+} /*combining 2 selectors*/
+
+/* New selectors */
+/* :has() */
+fieldset:has(input:checked) {
+  border-color: rgb(240, 60, 180);
+}
+/*nested selectors */
+#interest-form {
+  & button[type="submit"] {
+    background-color: var(--primary-color, navy);
+    color: white;
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+/*Media queries*/
+/*For small screens*/
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #events {
+    grid-template-columns: 1fr; /*1 column on small screens*/
+  }
+}
+
+/* For medium screens*/
+@media (min-width: 601px) and (max-width: 1024px) {
+  #events {
+    grid-template-columns: 1fr 1fr; /*2 columns on medium screens*/
+  }
+}
