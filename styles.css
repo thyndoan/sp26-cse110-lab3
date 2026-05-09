@@ -172,7 +172,7 @@ fieldset:has(input:checked) {
 }
 /*nested selectors */
 #interest-form {
-  & :is(button[type="submit"]) {
+  & button[type="submit"] {
     background-color: var(--primary-color, navy);
     color: white;
     &:hover {
